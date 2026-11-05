@@ -1,0 +1,53 @@
+Sahar Zaker Soltani
+PhD in Soft Computing and Artificial Intelligence
+-------------------------------------------------
+
+کد کامل الگوریتم جایگذاری پسرو در متلب
+
+تعریف تابع:بخش اول
+
+function y = backsub(T,b)
+
+[m,n] = size(T);
+
+if m ~= n
+    error('Matrix T is not square!')
+end
+
+y = zeros(n,1);
+
+for i = n:-1:1
+
+    s = 0;
+
+    if i ~= n
+        s = T(i,i+1:n)*y(i+1:n);
+    end
+
+    if T(i,i) == 0
+        error('Matrix T is singular')
+    end
+
+    y(i) = (b(i)-s)/T(i,i);
+
+end
+
+end
+
+بخش دوم: اجرای تابع
+
+T = [1  2  0;
+     0 -3  1;
+     0  0  1];
+
+b = [1; 1; 0];
+
+y = backsub(T,b)
+
+خروجی
+
+y =
+
+    1.6667
+   -0.3333
+         0
