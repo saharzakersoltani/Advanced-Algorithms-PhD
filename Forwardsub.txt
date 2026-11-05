@@ -1,0 +1,55 @@
+Sahar Zaker Soltani
+PhD in Soft Computing and Artificial Intelligence
+-------------------------------------------------
+
+کد کامل الگوریتم جایگذاری پیشرو در متلب
+
+بخش اول: تعریف تابع
+
+function x = forwardsub(L,b)
+
+[m,n] = size(L);
+
+if m ~= n
+    error('Matrix L is not square!')
+end
+
+x = zeros(n,1);
+
+x(1) = b(1)/L(1,1);
+
+for i = 2:n
+
+    s = 0;
+
+    for j = 1:i-1
+        s = s + L(i,j)*x(j);
+    end
+
+    if L(i,i) == 0
+        error('Matrix L is singular')
+    end
+
+    x(i) = (b(i)-s)/L(i,i);
+
+end
+
+end
+
+بخش دوم: اجرای تابع و مثال
+
+L = [2  0  0;
+     3  1  0;
+     1 -2  2];
+
+b = [4; 5; 1];
+
+x = forwardsub(L,b)
+
+خروجی 
+
+x =
+
+    2.0000
+   -1.0000
+   -1.5000
